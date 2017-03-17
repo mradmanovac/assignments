@@ -1,0 +1,122 @@
+--LOGIN
+
+1. Selektovanje username i password iz tabele users (potrebno za logovanje)
+SELECT username, password FROM users;
+________________________________________________________________________
+
+--ADD NEW ASSIGNMENTS
+1. Selektovanje grupa iz baze (potrebno da se zadatak dodeli grupi)
+SELECT * FROM groups;
+
+________________________________________________________________________
+
+2. Insertovanje podataka sa forme u tabelu assignments (potrebno za kreiranje assignment-a)
+INSERT INTO `homeworks`.`assignments` (`title`, `description`, `creation_date`, `group_id`, `download_url`) 
+VALUES 
+('..', '..', '..', '..');
+
+________________________________________________________________________
+
+3. Selektovanje assignements-a iz tabele assignments (potrebno kada treba da se radi editovanje)
+SELECT * FROM assignments;
+
+________________________________________________________________________
+
+4. Brisanje iz tabele assignments (potrebno za brisanje)
+DELETE FROM assignments WHERE id = '..';
+
+5. Ažuriranje assigmnets doradi (potrebno za edit mode da se uradi ažuriranje)
+UPDATE `homeworks`.`assignments` SET `title`='..', `description`='..', `creation_date`='..', `group_id`='..', `download_url`='..' WHERE id = '..';
+
+________________________________________________________________________________________________________________________________________________
+
+--ADD NEW GROUP
+
+1. Insertovanje podataka sa forme u tabelu groups (potrebno za dodavanje grupe)
+INSERT INTO `homeworks`.`groups` (`name`, `code`, `created_at`) VALUES ('..', '..', now());
+*da li je ovde dobro prosleðen parametar now(). Ovo radi kroz mysql, a kako da se upiše kroz php?
+
+________________________________________________________________________
+
+2. Selektovanje iz tabele groups (potrebno da vidimo sve grupe)
+SELECT * FROM groups ;
+
+________________________________________________________________________
+
+3. Selektovanje iz tabele groups (potrebno za editovanje)
+SELECT * FROM groups WHERE id='..';
+
+________________________________________________________________________
+
+4. Ažuriranje podataka u tabeli groups
+UPDATE `homeworks`.`groups` 
+SET `name`='..', `code`='..', `created_at`='..', `is_active`='..' 
+WHERE `id`='..';
+
+________________________________________________________________________
+
+5. Brisanje iz tabele groups
+DELETE FROM groups WHERE id = '..';
+
+________________________________________________________________________________________________________________________________________________
+
+
+--ADD USER
+1. Selektovanje role iz tabele roles (potrebno kod dodele role korisniku, ovde vidimo samo aktivne role)
+SELECT name, role_id FROM roles where is_active = 1;
+
+________________________________________________________________________
+
+2. Selekotavnje grupe iz tabele groups - (potrebno da korisiku dodelimo grupi)
+SELECT id, name FROM groups where is_active = 1;
+
+________________________________________________________________________
+
+3. Insertovanje podataka sa forme u tabelu users (potrebno za dodavanje korisnika)
+INSERT INTO `homeworks`.`users` (`username`, `email`, `password`, `role_id`, `role_name`, `group_id`, `group_name`) 
+VALUES ('..','..','..', '..','..', '..','..');
+
+________________________________________________________________________
+
+4. Selektovanje iz tabele users
+SELECT * FROM users;
+
+________________________________________________________________________
+
+5. Ažuriranje podakata sa forme u tabelu users (flag is_active)
+UPDATE `homeworks`.`users` 
+SET `username`='..', `email`='..', `password`='..', `role_id`='..', `role_name`=`..`, `group_id`='..', `group_name`='..' 
+WHERE `id`='..';
+
+________________________________________________________________________________________________________________________________________________
+
+
+--HISTORY
+________________________________________________________________________
+
+1. Selektovanje iz tabele history
+SELECT * FROM history;
+
+________________________________________________________________________________________________________________________________________________
+
+
+--ADD ROLES
+1. Selektovanje iz tabele roles (da vidimo sve detalje o roli)
+SELECT * FROM roles;
+
+________________________________________________________________________
+
+2. Ažuriranje podataka u tabeli roles (potrebno za ažuriranje role)
+UPDATE `homeworks`.`roles` SET `name`='..', `role_id`='..' WHERE `id`='..';
+*ako je potrebno da se rola deaktivira u upit treba da se doda i podatak is_active jer se ne šalje zato što je po default 1
+
+________________________________________________________________________
+
+3. Insertovanje podataka sa forme u tabelu roles (potrebno kod nove role)
+INSERT INTO `homeworks`.`roles` (`name`, `role_id`) VALUES ('..', '..');
+
+________________________________________________________________________
+
+4. Selektovanje role iz tabele roles (ako je potrebno da se izmeni poatak na roli)
+SELECT role_id, name FROM roles WHERE is_active = 1;
+
