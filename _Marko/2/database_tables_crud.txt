@@ -1,0 +1,171 @@
+--kreiranje baze
+CREATE DATABASE homeworks
+
+--kreiranje tabele assignements
+CREATE TABLE homeworks.assignments 
+(
+  `id` INT(3) NOT NULL AUTO_INCREMENT,
+
+  `title` VARCHAR(200) NULL,
+
+  `description` VARCHAR(1000) NULL,
+
+  `creation_date` DATETIME NULL,
+
+  `group_id` INT(5) NULL,
+
+  `download_url` VARCHAR(200) NULL,
+
+  `bitly_url` VARCHAR(200) NULL DEFAULT 'abc',
+
+  PRIMARY KEY (`id`));
+
+________________________________________________________________________
+
+--kreiranje tabele groups
+CREATE TABLE homeworks.groups
+(
+  `id` INT(3) NOT NULL AUTO_INCREMENT,
+
+  `name` VARCHAR(100) NULL,
+
+  `code` VARCHAR(10) NULL,
+
+  `created_id` DATETIME NULL,
+
+  `is_active` BOOLEAN default true,
+
+  PRIMARY KEY (`id`));
+
+________________________________________________________________________
+--kreiranje tabele users
+CREATE TABLE homeworks.users
+(
+  `id` INT(4) NOT NULL AUTO_INCREMENT,
+
+  `username` VARCHAR(50) NULL,
+
+  `email` VARCHAR(50) NULL,
+
+  `password` VARCHAR(32) NULL,
+
+  `role_id` INT(2) NULL,
+
+  `is_active` BOOLEAN default true,
+
+  `group_id` INT (2) NULL,
+
+  PRIMARY KEY (`id`));
+
+________________________________________________________________________
+--kreiranje tabele history
+CREATE TABLE homeworks.history
+(
+  `id` INT(5) NOT NULL AUTO_INCREMENT,
+
+  `assignment_id` INT(3) NULL,
+  `user_id` INT(4) NULL,
+
+  `created_at` DATETIME NULL,
+
+  `ip` VARCHAR(50) default '127.0.0.1',
+  PRIMARY KEY (`id`));
+
+________________________________________________________________________
+--kreiranje tabele roles
+CREATE TABLE homeworks.roles
+(
+  `id` INT(4) NOT NULL AUTO_INCREMENT,
+
+  `role_name` VARCHAR(20) NULL,
+
+  `role_id` INT(2) NULL,
+
+  `is_active` BOOLEAN default true,
+
+  PRIMARY KEY (`id`));
+
+________________________________________________________________________
+--brisanje baze
+DROP DATABASE homeworks;
+________________________________________________________________________
+--brisanje tabele assignements
+DROP TABLE assignements;
+________________________________________________________________________
+--brisanje tabele groups
+DROP TABLE groups;
+________________________________________________________________________
+--brisanje tabele users
+DROP TABLE users;
+________________________________________________________________________
+--brisanje tabele history
+DROP TABLE history;
+________________________________________________________________________
+--brisanje tabele roles
+DROP TABLE roles
+________________________________________________________________________
+--ubacivanje dummy podataka u assignments
+INSERT INTO `homeworks`.`assignments` (`id`, `title`, `description`, `creation_date`, `group_id`, `download_url`) VALUES  ('1', 'Domaci 1', 'Domaci 1, uraditi sve zadatke', '15.03.2017', '7', 'www.idemo.com');
+INSERT INTO `homeworks`.`assignments` (`id`, `title`, `description`, `creation_date`, `group_id`, `download_url`) VALUES
+('2', 'Domaci 2', 'Domaci 2, uraditi sve zadatke', '14.03.2017', '7', 'www.dasdasd.com');
+INSERT INTO `homeworks`.`assignments` (`id`, `title`, `description`, `creation_date`, `group_id`, `download_url`) VALUES  ('3', 'Domaci 4', 'Domaci 4, uraditi sve zadatke', '10.03.2017', '8', 'www.dsadasda.com');
+INSERT INTO `homeworks`.`assignments` (`id`, `title`, `description`, `creation_date`, `group_id`, `download_url`) VALUES  ('4', 'Domaci 8', 'Domaci 4, uraditi sve zadatke', '05.03.2017', '1', 'www.dsadasd.com');
+INSERT INTO `homeworks`.`assignments` (`id`, `title`, `description`, `creation_date`, `group_id`, `download_url`) VALUES  ('5', 'Domaci 7', 'Domaci 5, uraditi sve zadatke', '15.04.2017', '9', 'www.dasdasda.com');
+INSERT INTO `homeworks`.`assignments` (`id`, `title`, `description`, `creation_date`, `group_id`, `download_url`) VALUES  ('6', 'Domaci 6', 'Domaci 6, uraditi sve zadatke', '10.03.2017', '2', 'www.dasdadasd.com');
+INSERT INTO `homeworks`.`assignments` (`id`, `title`, `description`, `creation_date`, `group_id`, `download_url`) VALUES  ('7', 'Domaci 77', 'Domaci 7, uraditi sve zadatke', '15.03.2016', '3', 'www.dsada.com');
+
+________________________________________________________________________
+--ubacivanje dummy podataka u history
+INSERT INTO `homeworks`.`history` (`id`, `assignment_id`, `user_id`, `created_at`) VALUES ('1', '1', '1', '10.03.2017'); 
+INSERT INTO `homeworks`.`history` (`id`, `assignment_id`, `user_id`, `created_at`) VALUES ('2', '2', '2', '01.01.2017');
+INSERT INTO `homeworks`.`history` (`id`, `assignment_id`, `user_id`, `created_at`) VALUES ('3', '3', '3', '15.12.2016');
+INSERT INTO `homeworks`.`history` (`id`, `assignment_id`, `user_id`, `created_at`) VALUES ('4', '4', '4', '15.04.2015');
+INSERT INTO `homeworks`.`history` (`id`, `assignment_id`, `user_id`, `created_at`) VALUES ('5', '5', '5', '14.03.2017');
+INSERT INTO `homeworks`.`history` (`id`, `assignment_id`, `user_id`, `created_at`) VALUES ('6', '6', '6', '10.03.2017');
+INSERT INTO `homeworks`.`history` (`id`, `assignment_id`, `user_id`, `created_at`) VALUES ('7', '7', '7', '10.10.2016');
+
+________________________________________________________________________
+--ubacivanje dummy podataka u groups
+INSERT INTO `homeworks`.`groups` (`id`, `name`, `code`, `created_id`, `is_active`) VALUES ('1', 'Core PHP 7', 'cphp7', '15.03.2017', '1'); 
+INSERT INTO `homeworks`.`groups` (`id`, `name`, `code`, `created_id`, `is_active`) VALUES ('2', 'Core PHP 7', 'cphp7', '15.04.2016', '1');
+INSERT INTO `homeworks`.`groups` (`id`, `name`, `code`, `created_id`, `is_active`) VALUES ('3', 'Core PHP 7', 'cph6', '15.02.2017', '0');
+INSERT INTO `homeworks`.`groups` (`id`, `name`, `code`, `created_id`, `is_active`) VALUES ('4', 'Core PHP 7', 'cphp4', '10.03.2017', '1');
+INSERT INTO `homeworks`.`groups` (`id`, `name`, `code`, `created_id`, `is_active`) VALUES ('5', 'Core PHP 7', 'cphp2', '14.03.2017', '1');
+INSERT INTO `homeworks`.`groups` (`id`, `name`, `code`, `created_id`, `is_active`) VALUES ('6', 'Core PHP 7', 'cphp1', '15.03.2010', '0');
+INSERT INTO `homeworks`.`groups` (`id`, `name`, `code`, `created_id`, `is_active`) VALUES ('7', 'Core PHP 7', 'cphp9', '15.01.2017', '1');
+
+________________________________________________________________________
+--ubacivanje dummy podataka u users // password je md5 od a
+INSERT INTO `homeworks`.`users` (`id`, `username`, `email`, `password`, `role_id`, `is_active`, `group_id`) VALUES ('1', 'user_name', 'email@aaa.com', '0cc175b9c0f1b6a831c399e269772661', '1', '1', '1');
+INSERT INTO `homeworks`.`users` (`id`, `username`, `email`, `password`, `role_id`, `is_active`, `group_id`) VALUES ('2', 'marko', 'email@sss.com', '0cc175b9c0f1b6a831c399e269772661', '0', '0', '0');
+INSERT INTO `homeworks`.`users` (`id`, `username`, `email`, `password`, `role_id`, `is_active`, `group_id`) VALUES ('3', 'mirko', 'email@dddd.com', '0cc175b9c0f1b6a831c399e269772661', '2', '1', '1');
+INSERT INTO `homeworks`.`users` (`id`, `username`, `email`, `password`, `role_id`, `is_active`, `group_id`) VALUES ('4', 'slavko', 'email@www.com', '0cc175b9c0f1b6a831c399e269772661', '3', '1', '0');
+INSERT INTO `homeworks`.`users` (`id`, `username`, `email`, `password`, `role_id`, `is_active`, `group_id`) VALUES ('5', 'slobodan', 'email@fff.com', '0cc175b9c0f1b6a831c399e269772661', '1', '1', '1');
+INSERT INTO `homeworks`.`users` (`id`, `username`, `email`, `password`, `role_id`, `is_active`, `group_id`) VALUES ('6', 'mladen', 'email@vvv.com', '0cc175b9c0f1b6a831c399e269772661', '0', '1', '1');
+INSERT INTO `homeworks`.`users` (`id`, `username`, `email`, `password`, `role_id`, `is_active`, `group_id`) VALUES ('7', 'igor', 'email@bbb.com', '0cc175b9c0f1b6a831c399e269772661', '4', '1', '1');
+INSERT INTO `homeworks`.`users` (`id`, `username`, `email`, `password`, `role_id`, `is_active`, `group_id`) VALUES ('1', 'user_name', 'email@fbfbf.com', '0cc175b9c0f1b6a831c399e269772661', '1', '1', '1');
+
+________________________________________________________________________
+--ubacivanje dummy podataka u roles
+INSERT INTO `homeworks`.`roles` (`id`, `role_name`, `role_id`, `is_active`) VALUES ('1', 'Super admin', '1', '1'); 
+INSERT INTO `homeworks`.`roles` (`id`, `role_name`, `role_id`, `is_active`) VALUES ('2', 'Admin', '2', '1');
+INSERT INTO `homeworks`.`roles` (`id`, `role_name`, `role_id`, `is_active`) VALUES ('3', 'Clan', '3', '1');
+INSERT INTO `homeworks`.`roles` (`id`, `role_name`, `role_id`, `is_active`) VALUES ('4', 'Sljaker', '4', '0');
+INSERT INTO `homeworks`.`roles` (`id`, `role_name`, `role_id`, `is_active`) VALUES ('5', 'Robot', '5', '0');
+INSERT INTO `homeworks`.`roles` (`id`, `role_name`, `role_id`, `is_active`) VALUES ('6', 'Gost', '6', '1');
+INSERT INTO `homeworks`.`roles` (`id`, `role_name`, `role_id`, `is_active`) VALUES ('7', 'Super admin', '1', '0');
+
+
+________________________________________________________________________
+
+
+
+
+
+
+
+
+
+
+
+

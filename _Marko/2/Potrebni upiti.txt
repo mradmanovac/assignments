@@ -1,0 +1,115 @@
+--login
+1. Selektovanje username i password iz tabele users
+SELECT username, password FROM users;
+________________________________________________________________________
+-add new assignments
+1. Selektovanje grupa iz baze
+SELECT * FROM groups;
+________________________________________________________________________
+2. Insertovanje podataka sa forme u tabelu assignments
+INSERT INTO `homeworks`.`assignments` (`id`, `title`, `description`, `creation_date`, `group_id`, `download_url`) 
+VALUES 
+('..', '..', '..', '..', '..', '..');
+
+* još nisam uradio deo za triger koji upisuje creation_date
+Da li bi ovo bio dobar postupak za kreiranje trigera
+
+CREATE TRIGGER `homeworks`.`groups`
+
+ON `homeworks`.`groups`
+
+FOR INSERT, UPDATE 
+
+AS 
+
+BEGIN 
+    
+	IF NOT UPDATE(updatedDate) 
+        
+		UPDATE `homeworks`.`groups` 
+		SET created_at=GETDATE() 
+        
+		WHERE col1 IN (SELECT col1 FROM inserted) 
+
+END 
+
+GO
+
+________________________________________________________________________
+3. Selektovanje assignements-a iz tabele assignments
+SELECT * FROM assignments;
+________________________________________________________________________
+4. Brisanje iz tabele assignments
+DELETE FROM assignments WHERE id = '..';
+________________________________________________________________________________________________________________________________________________
+
+
+--add new group
+1. Insertovanje podataka sa forme u tabelu groups
+INSERT INTO `homeworks`.`groups` (`id`, `name`, `code`, `created_id`, `is_active`) VALUES ('..', '..', '..', '..', '..');
+;
+________________________________________________________________________
+2. Selektovanje iz tabele groups
+SELECT * FROM groups;
+________________________________________________________________________
+3. Ažuriranje podataka u tabeli groups
+UPDATE `homeworks`.`groups` 
+SET `id`='..', `name`='..', `code`='..', `created_id`='..', `is_active`='..' 
+WHERE `id`='..';
+________________________________________________________________________
+4. Brisanje iz tabele groups
+DELETE FROM assignments WHERE id = '..';
+________________________________________________________________________________________________________________________________________________
+
+
+--add  user
+1. Selektovanje role iz tabele roles
+SELECT role_name FROM roles where is_active = 1;
+________________________________________________________________________
+2. Selekotavnje grupe iz tabele groups - ovo je taèka 2 iz add new group
+SELECT name FROM groups where is_active = 1;
+________________________________________________________________________
+3. Insertovanje podataka sa forme u tabelu users
+INSERT INTO `homeworks`.`users` (`id`, `username`, `email`, `password`, `role_id`, `is_active`, `group_id`)
+VALUES ('..', '..', '..', '..', '..', '..', '..');
+________________________________________________________________________
+4. Selektovanje iz tabele users
+SELECT * FROM users;
+________________________________________________________________________
+5. Ažuriranje podakata sa forme u tabelu users (flag is_active)
+UPDATE `homeworks`.`users` 
+SET `id`='..', `username`='..', `email`='..', `password`='..', `role_id`='..', `is_active`='..', `group_id`='..' 
+WHERE `id`='..';
+________________________________________________________________________________________________________________________________________________
+
+
+--history
+1. Selektovanje iz tabele history
+SELECT * FROM history;
+________________________________________________________________________
+2. Ažuriranje tabele history
+UPDATE `homeworks`.`history` 
+SET `id`='..', `assignment_id`='..', `user_id`='..', `created_at`='..', `ip`='..' 
+WHERE `id`='..';
+
+* još nisam uradio deo za triger koji upisuje creation_date kada se radi update
+________________________________________________________________________
+3. Brisanje iz tabele history
+DELETE FROM history WHERE id = '..';
+
+________________________________________________________________________________________________________________________________________________
+
+
+--roles
+1. Insertovanje u tabelu roles
+SELECT * FROM roles;
+________________________________________________________________________
+2. Ažuriranje podataka u tabeli roles
+UPDATE `homeworks`.`roles` SET `id`='..', `role_name`='..', `role_id`='..', `is_active`='..' WHERE `id`='..';
+________________________________________________________________________
+
+
+
+
+
+
