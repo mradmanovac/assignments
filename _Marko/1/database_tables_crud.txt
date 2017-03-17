@@ -1,0 +1,99 @@
+--kreiranje baze
+CREATE DATABASE homeworks
+
+--kreiranje tabele assignements
+CREATE TABLE homeworks.assignments 
+(
+  `id` INT(3) NOT NULL AUTO_INCREMENT,
+
+  `title` VARCHAR(200) NULL,
+
+  `description` VARCHAR(1000) NULL,
+
+  `creation_date` DATETIME NULL,
+
+  `group_id` INT(5) NULL,
+
+  `download_url` VARCHAR(200) NULL,
+
+  `bitly_url` VARCHAR(200) NULL DEFAULT 'abc',
+
+  PRIMARY KEY (`id`));
+
+--kreiranje tabele groups
+CREATE TABLE homeworks.groups
+(
+  `id` INT(3) NOT NULL AUTO_INCREMENT,
+
+  `name` VARCHAR(100) NULL,
+
+  `code` VARCHAR(10) NULL,
+
+  `created_id` DATETIME NULL,
+
+  PRIMARY KEY (`id`));
+
+
+--kreiranje tabele users
+CREATE TABLE homeworks.users
+(
+  `id` INT(4) NOT NULL AUTO_INCREMENT,
+
+  `username` VARCHAR(50) NULL,
+
+  `email` VARCHAR(50) NULL,
+
+  `password` VARCHAR(32) NULL,
+
+  `role_id` INT(2) NULL,
+
+  `is_active` BOOLEAN default true,
+
+  `group_id` INT (2) NULL,
+
+  PRIMARY KEY (`id`));
+
+
+--kreiranje tabele downloads
+CREATE TABLE homeworks.downloads
+(
+  `id` INT(5) NOT NULL AUTO_INCREMENT,
+
+  `assignment_id` INT(3) NULL,
+  `user_id` INT(4) NULL,
+
+  `created_at` DATETIME NULL,
+
+  `ip` VARCHAR(50) default '127.0.0.1',
+  PRIMARY KEY (`id`));
+
+
+--brisanje baze
+DROP DATABASE homeworks;
+
+--brisanje tabele assignements
+DROP TABLE assignements;
+
+--brisanje tabele groups
+DROP TABLE groups;
+
+--brisanje tabele users
+DROP TABLE users;
+
+--brisanje tabele downloads
+DROP TABLE downloads;
+
+--ubacivanje dummy podataka u assignments
+INSERT INTO `homeworks`.`assignments` (`id`, `title`, `description`, `creation_date`, `group_id`, `download_url`) VALUES ('1', 'Domaci 1', 'Domaci 1, uraditi sve zadatke', '15.03.2017', '7', 'www.idemo.com');
+
+--ubacivanje dummy podataka u downloads
+INSERT INTO `homeworks`.`downloads` (`id`, `assignment_id`, `user_id`, `created_at`) VALUES ('1', '1', '1', '15.03.2017');
+
+
+--ubacivanje dummy podataka u groups
+INSERT INTO `homeworks`.`groups` (`id`, `name`, `code`, `created_id`) VALUES ('1', 'Core PHP 7', 'cphp7', '15.03.2017');
+
+
+--ubacivanje dummy podataka u users // password je md5 od a
+INSERT INTO `homeworks`.`users` (`id`, `username`, `email`, `password`, `role_id`, `is_active`, `group_id`) VALUES ('1', 'user_name', 'email@email.com', '0cc175b9c0f1b6a831c399e269772661', '1', '1', '1');
+

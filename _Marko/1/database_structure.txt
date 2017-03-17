@@ -1,0 +1,30 @@
+assignments
+id - int(3) not null primary key auto_increment
+title - varchar(200)
+description - varchar(1000)
+creation_date - datetime
+group_id - int(5)
+download_url - varchar(200)
+bitly_url - varchar(200) default 'abc'
+
+groups
+id - int(5) not null primary key auto_increment
+name - varchar(100)
+code - varchar(10)
+created_at - datetime 
+
+users
+id - int(4) not null primary key auto_increment
+username  - varchar(50)
+email  - varchar(50)
+password  - varchar(32)
+role_id - int(2)
+is_active - boolean default true
+group_id - int(2)
+
+downloads
+id - int(5) not null primary key auto_increment
+assignment_id - int(3)
+user_id - int(4)
+created_at - datetime
+ip - varchar(50) default '127.0.0.1'
