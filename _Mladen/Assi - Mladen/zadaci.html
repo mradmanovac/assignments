@@ -1,0 +1,160 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Assignment</title>
+
+<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,300italic,100italic,400italic,500,500italic,700,700italic,900,900italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body>
+	<header id="header">
+        <div class="wrapper">
+            <div id="logo">
+                <a href="index.html"><img src="" alt="logo"></a>
+            </div>
+                
+            <nav id="nav">
+			    <ul>
+				    <li><a href="grupe.html">logout</a></li>
+				</ul>
+            </nav>
+        </div> 
+    </header>
+	<section id="navigation">
+	    <aside id="sidebar">
+	        <div id="sidebar-top">
+		        <div id="user-image">
+				    <img src="images/user.png" alt="user-image">
+				</div>
+				<div id="user-name">
+				    <h5>Tomi Tomovic</h5>
+				</div>
+		    </div>
+		    <div id="sidebar-nav">
+			    <ul>
+				    <li><a href="grupe.html"><i class="fa fa-users" aria-hidden="true"></i>&nbsp; Grupe</a></li>
+				    <li><a href="zadaci.html"><i class="fa fa-clone" aria-hidden="true"></i>&nbsp; Zadaci</a></li>
+				    <li><a href="studenti.html"><i class="fa fa-graduation-cap" aria-hidden="true"></i>&nbsp;Studenti</a></li>
+					<li><a href="#"><i class="fa fa-history" aria-hidden="true"></i>&nbsp; Istorija</a></li>
+				    <li><a href="#"><i class="fa fa-pie-chart" aria-hidden="true"></i>&nbsp; Statistika</a></li>
+				</ul>
+		    </div>
+	    </aside>
+	</section>
+	<section id="main">
+		    <div class="forms-assign">
+			    <div class="forms-top">
+				    <h4>dodaj zadatak</h4>
+				</div>
+				<div class="forms-cont">
+			        <form action="" method="post">
+				        <div>
+				            <label for="title">Naslov:</label><br>
+					        <input class="inputs" type="text" id="title" name="title" maxlength="200" value="" placeholder="Upisite naslov">
+					    </div>
+					    <div>
+				            <label for="download_url">Download URL:</label><br>
+					        <input class="inputs" type="text" id="download_url" name="download_url" maxlength="200" value="" placeholder="Upisite adresu">
+					    </div>
+					    <div>
+					        <select class="inputs">
+					            <option selected>Grupa</option>
+					            <option>Grupa-1</option>
+					            <option>Grupa-2</option>
+					            <option>Grupa-3</option>
+					            <option>Grupa-4</option>
+					        </select>
+					    </div>
+						<div>
+						    <input class="submit-btn" type="submit" name="submit-gr" value="DODAJ">
+							<input type="hidden" name="edit-hdn" value="">
+							<input type="hidden" name="delete-hdn" value="">
+						</div>
+				    </form>
+				</div>
+				<div id="desc-cont">
+				    <div>
+				        <label for="description">Opis zadatka:</label><br>
+					    <textarea class="inputs" name="description" id="description" cols="80" rows="10" maxlength="1000" placeholder="Upisite adresu"></textarea>
+				    </div>
+				</div>
+			</div>
+			
+		<div class="tables-assign">
+		    <div class="tables-top">
+			    <h4>spisak svih zadataka</h4>
+			</div>
+			<div class="tables-cont">
+			
+		    <table>
+			    <tr>
+				    <th>id</th>
+					<th>naslov</th>
+					<th>opis</th>
+					<th>preuzimanja</th>
+					<th>kreirano</th>
+					<th colspan="2">&nbsp;</th>
+				</tr>
+				<tr>
+				    <td>1</td>
+					<td>Domaci-12(MySQL)</td>
+					<td>ovde ide neki opis namenjen domacem</td>
+					<td>7</td>
+					<td>12.04.2017</td>
+					<td class="edit-delete"><a href="#"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
+					<td class="edit-delete"><a href="#"><i class="fa fa-lg fa-trash" aria-hidden="true"></i></a></td>
+				</tr>
+				<tr>
+				    <td>2</td>
+					<td>Domaci-12(PHP)</td>
+					<td>ovde ide neki opis namenjen domacem</td>
+					<td>30</td>
+					<td>12.04.2017</td>
+					<td class="edit-delete"><a href="#"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
+					<td class="edit-delete"><a href="#"><i class="fa fa-lg fa-trash" aria-hidden="true"></i></a></td>
+				</tr>
+				<tr>
+				    <td>3</td>
+					<td>Domaci-12(.NET)</td>
+					<td>ovde ide neki opis namenjen domacem</td>
+					<td>19</td>
+					<td>12.04.2017</td>
+					<td class="edit-delete"><a href="#"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
+					<td><a href="#"><i class="fa fa-lg fa-trash" aria-hidden="true"></i></a></td>
+				</tr>
+			</table>
+			</div>
+		</div>
+    </section>
+
+    <footer id="footer">
+    </footer>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
