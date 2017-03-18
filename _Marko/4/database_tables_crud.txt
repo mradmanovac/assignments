@@ -1,0 +1,123 @@
+	--kreiranje baze
+CREATE DATABASE homeworks CHARACTER SET ut8 COLLATE ut8_general_ci;
+
+--kreiranje tabele assignements
+CREATE TABLE `assignments` (
+  `id` int(3) NOT NULL AUTO_INCREMENT,
+  `title` varchar(200) NOT NULL,
+  `description` varchar(1000) NOT NULL,
+  `created_at` timestamp DEFAULT now() NOT NULL,
+  `group_id` int(5) NOT NULL,
+  `download_url` varchar(200) NOT NULL,
+  `bitly_url` varchar(200) NOT NULL DEFAULT 'abc',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB;
+
+________________________________________________________________________
+
+
+--kreiranje tabele history
+CREATE TABLE `history` (
+  `id` int(5) NOT NULL AUTO_INCREMENT,
+  `assignment_id` int(3) NOT NULL,
+  `user_id` int(4) NOT NULL,
+  `created_at` timestamp DEFAULT now() NOT NULL,
+  `ip` varchar(50) DEFAULT '127.0.0.1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB;
+
+________________________________________________________________________
+
+
+--kreiranje tabele groups
+CREATE TABLE `groups` (
+  `id` int(3) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `code` varchar(10) NOT NULL,
+  `created_at` timestamp DEFAULT now() NOT NULL,
+  `is_active` tinyint(1) NOT NULL DEFAULT 1,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB;
+
+
+________________________________________________________________________
+
+
+--kreiranje tabele users
+CREATE TABLE `users` (
+  `id` int(4) NOT NULL AUTO_INCREMENT,
+  `username` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `password` varchar(32) NOT NULL,
+  `role_id` int(2) NOT NULL,
+  `group_id` int(2) NOT NULL,
+  `is_active` tinyint(1) NOT NULL DEFAULT 1,
+  `created_at` timestamp DEFAULT now() NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB;
+
+
+________________________________________________________________________
+
+
+--kreiranje tabele roles
+CREATE TABLE `roles` (
+  `id` int(4) NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) NOT NULL,
+  `is_active` tinyint(1) NOT NULL DEFAULT 1,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB;
+
+
+________________________________________________________________________
+--brisanje baze
+DROP DATABASE homeworks;
+________________________________________________________________________
+--brisanje tabele assignements
+DROP TABLE assignements;
+________________________________________________________________________
+--brisanje tabele groups
+DROP TABLE groups;
+________________________________________________________________________
+--brisanje tabele users
+DROP TABLE users;
+________________________________________________________________________
+--brisanje tabele history
+DROP TABLE history;
+________________________________________________________________________
+--brisanje tabele roles
+DROP TABLE roles
+________________________________________________________________________
+
+*za kolone koje imaju default vrednosti ipak sam negde ovde ostavio da se upisuju neki podaci. 
+Ovo sam uradio kako bi za potrebe razvoja i testa imali razlièite podatke u bazi
+
+--ubacivanje dummy podataka u assignments
+INSERT INTO `assignments` (title, description, group_id, download_url, bitly_url) VALUES ('Domaci 3', 'Domaci 3, uraditi sve zadatke', 1, 'www.idemo.com', 'abc'), ('Domaci 4', 'Domaci 4, uraditi sve zadatke', 1, 'www.idemo.com', 'abc');
+
+________________________________________________________________________
+--ubacivanje dummy podataka u history
+INSERT INTO `history` (assignment_id, user_id) VALUES (3, 2);
+INSERT INTO `history` (assignment_id, user_id) VALUES (4, 2);
+
+________________________________________________________________________
+--ubacivanje dummy podataka u groups
+INSERT INTO `groups` (name, code, is_active) VALUES ('Core JS 7','cjs7', 1), ('Core html 7','chtml7', 1);
+
+________________________________________________________________________
+--ubacivanje dummy podataka u users // password je md5 od a
+INSERT INTO `users` (username, email, password, role_id, group_id) VALUES ('student 3','adsemail@aaa.com','0cc175b9c0f1b6a831c399e269772661', 2, 2), ('student666','email@aaaaa.com','0cc175b9c0f1b6a831c399e269772661', 2, 3);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
