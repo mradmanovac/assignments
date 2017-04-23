@@ -179,6 +179,7 @@ a:hover {
 .forms-cont div:last-of-type {
 	margin-bottom: 0;
 }
+
 input[type=submit]{
 	cursor: pointer;
 }
@@ -218,6 +219,9 @@ input[type=file]{
 	background: #fff;
 	color: #22BA5D;
 	border: 3px solid #22BA5D;
+}
+.msg {
+	max-width: 212px;
 }
 
 .inputs:hover,select:hover {
@@ -302,7 +306,9 @@ th,td {
 	padding: 5px;
 	border: 2px solid #CECECE;
 	resize: vertical;
+	width: 600px;
 }
+
 #footer {
 	background: #222;
 	height: 200px;
@@ -317,14 +323,14 @@ th,td {
 		margin: 0 auto;
 		margin-bottom: 20px;
 	}
+	.students {
+		margin-right: 0px;
+	}
 	.inner_cont {
 		margin: 0 auto;
 	}
 	#desc-cont {
 		margin-left: 20px;
-	}
-	#desc-cont  textarea {
-		width: 600px;
 	}
 	.wrapper {
 	    width: 900px;
@@ -335,21 +341,33 @@ th,td {
 
 @media screen and (min-width:768px) and (max-width:1179px) {
     .table-stu-zad {
-	    width: 700px;
 		font-size: 0.9em;
     }
+    .content,
+    .table-stu-zad,
+    .students,
+    .tables table,
+    .table-index {
+    	width: 100%;
+    }
 	.students {
-		width: 700px;
-		margin-right: 0;
+		margin-right: 0px;
 	}
 	.forms {
 		float: none;
 		margin: 0 auto;
 		margin-bottom: 20px;
 	}
+	.login-form {
+		width: 254px;
+	}
 	.wrapper {
 	    width: auto;
 	    margin: 0 auto;
+    }
+    .tables {
+    	margin: 0 auto;
+    	float: none;
     }
 	#sidebar {
 		float: none;
@@ -357,8 +375,8 @@ th,td {
 		height: auto;
 		text-align: center;
 	}
-	#desc-cont  textarea {
-		width: 465px;
+	#desc-cont textarea {
+		width: 520px;
 	}
 	.inner-c-res .inputs {
 		width: 140px;
@@ -372,34 +390,36 @@ th,td {
 
 
 @media screen and (max-width:767px) {
+	.content,
+	#desc-cont textarea,
+	.students,
+	.tables,
+	.table-stu-zad,
+	.table-index,
+	.table-group table {
+    	width: 100%;
+    }
 	#sidebar {
 		float: none;
 		width: auto;
 		height: auto;
 		text-align: center;
 	}
-	#desc-cont  textarea {
-		width: 265px;
-	}
 	.forms {
 		float: none;
 		margin: 0 auto;
 		margin-bottom: 20px;
+	}
+	.login-form {
+		width: 254px;
 	}
 	.wrapper {
 	    width: auto;
 	    margin: 0 auto;
     }
 	.students {
-		width: 500px;
-		margin-right: 0;
+		margin-right: 0px;
 	}
-	.table-stu-zad {
-	    width: 400px;
-    }
-	.table-group table {
-	    width: 600px;
-    }
 	.inner-c-res .inputs {
 		width: 140px;
 	}

@@ -1,6 +1,6 @@
 <?php
 
-header("Location: http://localhost/assignment/zadaci.php?file=Ovaj domaci zadatak nema prilog za preuzimanje");
+header("Location: ../zadaci.php?file=Ovaj domaci zadatak nema prilog za preuzimanje");
 
 
 ?>
