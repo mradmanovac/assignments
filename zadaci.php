@@ -187,26 +187,22 @@ if (isset($_SESSION['usr_id'])) {
                                         <th>&nbsp;</th>
                                     </tr>
                                     <?php
-                                    $sql = "select * from assignments";
+                                    $sql = 'SELECT * FROM assignments INNER JOIN groups ON assignments.group_id = groups.id';
                                     $result = mysqli_query($conn, $sql);
+                                    
+                                    
 
-                                    while ($rw = mysqli_fetch_assoc($result)) {
+                                   while ($rw = mysqli_fetch_assoc($result)) {
                                         $desc_lenght = $rw['description'];
 
                                         if (strlen($desc_lenght) > 30) {
                                             $desc_lenght = substr($desc_lenght, 0, 20) . '...';
                                         }
-
-                                        $sql2 = "SELECT name FROM groups where id=" . $rw['group_id'];
-
-                                        $result2 = mysqli_query($conn, $sql2);
-
-                                        $rw2 = mysqli_fetch_assoc($result2);
                                         ?>
                                         <tr>
                                             <td><?= $rw['title'] ?></td>
                                             <td><?= $desc_lenght ?></td>
-                                            <td><?= $rw2['name'] ?></td>
+                                            <td><?= $rw['name'] ?></td>
                                             <td><?= $rw['created_at'] ?></td>
                                             <td><a href="uploads/<?= $rw['download_url'] ?>">Preuzmi</a></td>
                                             <td>4</td>

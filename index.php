@@ -112,25 +112,30 @@ session_start();
                                     <tr>
                                         <th>naslov</th>
                                         <th>opis</th>
+                                        <th>grupa</th>
                                         <th>kreirano</th>
                                         <th>link</th>
                                         <th>detalji</th>
                                     </tr>
                                     <?php
-                                    $sql = 'select * from assignments';
+                                    $sql = 'SELECT * FROM assignments INNER JOIN groups ON assignments.group_id = groups.id';
                                     $result = mysqli_query($conn, $sql);
                                     while ($rw = mysqli_fetch_assoc($result)) {
                                         $desc_lenght = $rw['description'];
-                                        //echo $rw['download_url'];
-                                        //<!-- <th colspan="2"><a href="index.php?file=Ovaj domaci zadatak nema prilog za preuzimanje">Preuzmi</a></th>  -->
+                                        
 
                                         if (strlen($desc_lenght) > 30) {
                                             $desc_lenght = substr($desc_lenght, 0, 20) . '...';
                                         }
+
+                                       
+
+
                                         ?>
                                         <tr>
                                         <a href="#"><td><?= $rw['title'] ?></td></a>
                                         <td><?= $desc_lenght ?></td>
+                                        <td><?= $rw['name'] ?></td>
                                         <td><?= $rw['created_at'] ?></td>
 
                                         <?php
@@ -163,25 +168,29 @@ session_start();
                                     <tr>
                                         <th>naslov</th>
                                         <th>opis</th>
+                                        <th>grupa</th>
                                         <th>kreirano</th>
                                         <th>link</th>
                                         <th>detalji</th>
                                     </tr>
                                     <?php
-                                    $sql = "SELECT * FROM assignments INNER JOIN users ON assignments.group_id=users.group_id WHERE users.id = " . $_SESSION['usr_id'];
+                                    $sql = 'SELECT * FROM assignments INNER JOIN groups ON assignments.group_id = groups.id';
                                     $result = mysqli_query($conn, $sql);
                                     while ($rw = mysqli_fetch_assoc($result)) {
                                         $desc_lenght = $rw['description'];
-                                        //echo $rw['download_url'];
-                                        //<!-- <th colspan="2"><a href="index.php?file=Ovaj domaci zadatak nema prilog za preuzimanje">Preuzmi</a></th>  -->
+                                      
 
                                         if (strlen($desc_lenght) > 30) {
                                             $desc_lenght = substr($desc_lenght, 0, 20) . '...';
                                         }
+                                        
+
+
                                         ?>
                                         <tr>
                                         <a href="#"><td><?= $rw['title'] ?></td></a>
                                         <td><?= $desc_lenght ?></td>
+                                        <td><?= $rw['name'] ?></td>
                                         <td><?= $rw['created_at'] ?></td>
 
                                         <?php

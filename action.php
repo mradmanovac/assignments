@@ -44,15 +44,15 @@ switch ($_POST["form_id"]) {
 
         $username = mysqli_real_escape_string($conn, $_POST['username']);
         $password = mysqli_real_escape_string($conn, $_POST['password']);
-        $sql = "select * from users where username = '" . $username . "' and password = '" . md5($password) . "' and is_active='1'";
+        $sql = "select * from users where username = '" . $username . "' and is_active='1'"; //  and password = '" . md5($password) . "'
         $result = mysqli_query($conn, $sql);
-
-
         if ($row = mysqli_fetch_assoc($result)) {
-            $_SESSION['usr_id'] = $row['id'];
-            $_SESSION['u_name'] = $row['username'];
-            $_SESSION['role'] = $row['role_id'];
-            header("Location: index.php");
+            if (password_verify($_POST['password'], $row['password'])){
+                $_SESSION['usr_id'] = $row['id'];
+                $_SESSION['u_name'] = $row['username'];
+                $_SESSION['role'] = $row['role_id'];
+                header("Location: index.php");
+            }
         } else {
             die(header("Location: index.php?errormsg=Incorrect Username or Password or user is not active!"));
         }
@@ -123,7 +123,7 @@ switch ($_POST["form_id"]) {
             die(header("Location: studenti.php?errormsg=korisnik sa zeljenim username je vec registrovan"));
         }
 
-        $sql = "INSERT INTO users (username, email, password, role_id, group_id, created_at) VALUES ('" . $username . "', '" . $email . "', '" . $password . "', '" . $_POST['role_id'] . "', '" . $_POST['group_id'] . "', '" . date("Y-m-d H:i:s") . "')";
+        $sql = "INSERT INTO users (username, email, password, role_id, group_id) VALUES ('" . $username . "', '" . $email . "', '" . $password . "', '" . $_POST['role_id'] . "', '" . $_POST['group_id'] . "')";
         $insert = mysqli_query($conn, $sql);
 
 
@@ -164,7 +164,7 @@ switch ($_POST["form_id"]) {
 
                 die(header("Location: zadaci.php?id=$id&info=fajl nije dozvoljenog formata, dozvoljeni formati su rar i zip"));
             } else {
-                $sql = 'INSERT INTO assignments (title, description, created_at, group_id, download_url) VALUES ("' . $title . '", "' . $description . '", "' . date("Y-m-d H:i:s") . '", "' . $group . '", "' . $file . '")';
+                $sql = 'INSERT INTO assignments (title, description, group_id, download_url) VALUES ("' . $title . '", "' . $description . '", "' . $group . '", "' . $file . '")';
                 $insert = mysqli_query($conn, $sql);
                 $save_file = move_uploaded_file($file_tmp, "uploads/$file");
 
@@ -172,7 +172,7 @@ switch ($_POST["form_id"]) {
             }
         } else {
             $file = "file.php";
-            $sql = 'INSERT INTO assignments (title, description, created_at, group_id, download_url) VALUES ("' . $title . '", "' . $description . '", "' . date("Y-m-d H:i:s") . '", "' . $group . '", "' . $file . '")';
+            $sql = 'INSERT INTO assignments (title, description, group_id, download_url) VALUES ("' . $title . '", "' . $description . '", "' . $group . '", "' . $file . '")';
             $insert = mysqli_query($conn, $sql);
 
             header("Location: zadaci.php");
@@ -212,7 +212,7 @@ switch ($_POST["form_id"]) {
             die(header("Location: grupe.php?errormsg=Grupa sa ovim imenom vec postoji"));
         }
 
-        $sql = 'INSERT INTO groups (name,code,created_at) VALUES ("' . $name . '","' . $code . '","' . date("Y-m-d H:i:s") . '")';
+        $sql = 'INSERT INTO groups (name,code) VALUES ("' . $name . '","' . $code . '")';
         $insert = mysqli_query($conn, $sql);
         header("Location: grupe.php");
 
@@ -290,7 +290,7 @@ switch ($_POST["form_id"]) {
             }
         } else {
             $file = "file.php";
-            $sql = 'UPDATE assignments SET title="' . $title . '", description="' . $description . '", created_at="' . date("Y-m-d H:i:s") . '", group_id="' . $_POST['group'] . '", download_url="' . $file . '" WHERE id="' . $id . '"';
+            $sql = 'UPDATE assignments SET title="' . $title . '", description="' . $description . '", group_id="' . $_POST['group'] . '", download_url="' . $file . '" WHERE id="' . $id . '"';
             $update = mysqli_query($conn, $sql);
             header("Location: zadaci.php?id=$id&info=zadatak je uspesno izmenjen");
         }
@@ -333,16 +333,14 @@ switch ($_POST["form_id"]) {
         if (!$email) {
             die(header("Location: studenti.php?id=$id&errormsg=Ne valja email"));
         }
-
-
-        $password1 = md5($password1);
-        $password2 = md5($password2);
+        
         $password = "";
 
         if ($password1 == $password2) {
-            $password = $password1;
+            $options = ['cost' => 12];
+            $password = password_hash($password1, PASSWORD_DEFAULT, $options);
         } else {
-            die(header("Location: studenti.php?id=$id&errormsg=Lozinke se ne poklapaju, pokusajte ponovo"));
+            die(header("Location: studenti.php?id=$id&errormsg=Lozinke se ne poklapaju, pokusajte ponovo 1"));
         }
 
 

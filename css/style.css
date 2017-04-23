@@ -197,7 +197,7 @@ input[type=file]{
 .selects {
 	width: 213px;
 	outline: none; 
-	font-size: 1.2em;
+	font-size: 1em;
 	padding: 5px;
 	border: 2px solid #CECECE;
 }
